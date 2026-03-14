@@ -62,17 +62,36 @@
   let keywords = [];
 
   document.getElementById('kwInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ',') {
-      e.preventDefault();
-      const val = e.target.value.trim().replace(/,$/, '');
-      if (val && !keywords.includes(val)) { keywords.push(val); renderTags(); }
-      e.target.value = '';
-    }
-    if (e.key === 'Backspace' && e.target.value === '' && keywords.length) {
-      keywords.pop();
-      renderTags();
-    }
-  });
+  if (e.key === 'Enter' || e.key === ',') {
+    e.preventDefault();
+    addKeyword();
+  }
+  if (e.key === 'Backspace' && e.target.value === '' && keywords.length) {
+    keywords.pop();
+    renderTags();
+  }
+});
+
+document.getElementById('kwInput').addEventListener('keyup', e => {
+  if (e.key === 'Enter') addKeyword();
+});
+
+function addKeyword() {
+  const input = document.getElementById('kwInput');
+  const val = input.value.trim().replace(/,$/, '');
+  if (val && !keywords.includes(val)) {
+    keywords.push(val);
+    renderTags();
+  }
+  input.value = '';
+  input.focus();
+}
+
+document.getElementById('kwWrap').addEventListener('click', e => {
+  if (!e.target.closest('.btn-kw-add') && !e.target.closest('.remove')) {
+    document.getElementById('kwInput').focus();
+  }
+});
 
   function renderTags() {
     const wrap = document.getElementById('kwWrap');
