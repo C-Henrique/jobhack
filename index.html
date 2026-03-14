@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobHack — Busca Avançada de Vagas</title>
+
+  <link rel="icon" type="image/svg+xml" href="icons/jobhack-icon.svg">
+  <link rel="apple-touch-icon" href="icons/jobhack-icon.svg">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="logo-block">
+      <div class="logo-block">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="36" height="36"
+          style="border-radius:8px;flex-shrink:0">
+          <rect width="64" height="64" rx="14" fill="#1c1c1e" />
+          <rect x="10" y="12" width="44" height="7" rx="2" fill="#4ade80" opacity="0.95" />
+          <rect x="10" y="24" width="32" height="6" rx="2" fill="#ffffff" opacity="0.28" />
+          <rect x="10" y="34" width="38" height="6" rx="2" fill="#ffffff" opacity="0.18" />
+          <circle cx="44" cy="46" r="14" fill="#1d6f42" />
+          <circle cx="42" cy="44" r="7" fill="none" stroke="#ffffff" stroke-width="2.8" />
+          <line x1="47" y1="49" x2="53" y2="55" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" />
+        </svg>
+
+      </div>
+      <div class="logo-text">
+        <div class="eyebrow">Busca Avançada de Vagas</div>
+        <h1>Job<span class="hack">Hack</span></h1>
+      </div>
+    </div>
+    <div class="header-sub">
+      Consultas Google Hacking<br>para caçadores de vagas<br>
+      <span class="version">v1.0 // PT-BR</span>
+    </div>
+    <button class="btn-help" onclick="showTutorial()">Ajuda ?</button>
+  </header>
+
+  <div class="main">
+
+    <!-- ── Sidebar ───────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-scroll">
+
+        <!-- Cargo -->
+        <div class="panel">
+          <div class="section-label">Cargo / Área de Atuação</div>
+          <div class="field">
+            <input id="cargoInput" placeholder="ex: analista de marketing, desenvolvedor, designer..." />
+          </div>
+
+          <!-- Sugestões Rápidas (collapsible) -->
+          <div class="panel-collapsible" id="panel-sugestoes">
+            <div class="section-label panel-toggle" onclick="togglePanel('panel-sugestoes')">
+              Sugestões Rápidas <i class="toggle-icon">▾</i>
+            </div>
+            <div class="panel-body">
+              <div class="chips" id="areaChips">
+                <div class="chip" data-val="marketing digital">Marketing Digital</div>
+                <div class="chip" data-val="growth hacker">Growth</div>
+                <div class="chip" data-val="desenvolvedor">Dev</div>
+                <div class="chip" data-val="designer UX">UX Design</div>
+                <div class="chip" data-val="product manager">Product</div>
+                <div class="chip" data-val="vendas">Vendas</div>
+                <div class="chip" data-val="dados">Dados</div>
+                <div class="chip" data-val="RH">RH</div>
+                <div class="chip" data-val="financeiro">Financeiro</div>
+                <div class="chip" data-val="conteúdo">Conteúdo</div>
+                <div class="chip" data-val="social media">Social Media</div>
+                <div class="chip" data-val="SEO">SEO</div>
+              </div>
+              <p class="hint hint-mt7">↑ Clique para preencher o campo acima</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Palavras-chave -->
+        <div class="panel">
+          <div class="section-label">Palavras-chave extras</div>
+          <div class="tag-input-wrap" id="kwWrap">
+            <input id="kwInput" placeholder="ex: estratégia, liderança..." />
+          </div>
+          <p class="hint hint-mt6">↵ Enter para adicionar</p>
+        </div>
+
+        <!-- Mecanismo de busca -->
+        <div class="panel">
+          <div class="section-label">Mecanismo de Busca</div>
+          <div class="chips" id="siteChips">
+            <div class="chip active" data-val="google" data-url="https://www.google.com/search?q=">Google</div>
+            <div class="chip" data-val="bing" data-url="https://www.bing.com/search?q=">Bing</div>
+            <div class="chip" data-val="duckduckgo" data-url="https://duckduckgo.com/?q=">DuckDuckGo</div>
+            <div class="chip" data-val="brave" data-url="https://search.brave.com/search?q=">Brave</div>
+            <div class="chip" data-val="yahoo" data-url="https://search.yahoo.com/search?p=">Yahoo</div>
+          </div>
+          <p class="hint hint-mt8">O botão "Buscar" abrirá no mecanismo selecionado</p>
+        </div>
+
+        <!-- Sites de vagas (collapsible) -->
+        <div class="panel">
+          <div class="panel-collapsible" id="panel-sites">
+            <div class="section-label panel-toggle" onclick="togglePanel('panel-sites')">
+              Restringir a sites de vagas (opcional) <i class="toggle-icon">▾</i>
+            </div>
+            <div class="panel-body">
+              <div class="chips" id="jobSiteChips">
+                <div class="chip active" data-val="">Qualquer</div>
+                <div class="chip" data-val="linkedin.com">LinkedIn</div>
+                <div class="chip" data-val="infojobs.com.br">InfoJobs</div>
+                <div class="chip" data-val="catho.com.br">Catho</div>
+                <div class="chip" data-val="vagas.com.br">Vagas.com</div>
+                <div class="chip" data-val="gupy.io">Gupy</div>
+                <div class="chip" data-val="indeed.com">Indeed</div>
+                <div class="chip" data-val="glassdoor.com">Glassdoor</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="panel">
+          <div class="section-label">Filtros</div>
+          <div class="field">
+            <label>Regime de trabalho</label>
+            <select id="regimeSelect">
+              <option value="">Qualquer</option>
+              <option value="remoto">Remoto</option>
+              <option value="híbrido">Híbrido</option>
+              <option value="presencial">Presencial</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Nível</label>
+            <select id="nivelSelect">
+              <option value="">Qualquer</option>
+              <option value="estagio OR estágio">Estágio</option>
+              <option value="junior OR júnior">Júnior</option>
+              <option value="pleno">Pleno</option>
+              <option value="senior OR sênior">Sênior</option>
+              <option value="gerente OR coordenador">Gerente/Coordenador</option>
+              <option value="diretor">Diretor</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Exigência de formação</label>
+            <select id="formacaoSelect">
+              <option value="">Não incluir</option>
+              <option value="superior completo">Superior completo</option>
+              <option value="MBA">MBA</option>
+              <option value="pós-graduação">Pós-graduação</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Operadores avançados (collapsible) -->
+        <div class="panel">
+          <div class="panel-collapsible" id="panel-ops">
+            <div class="section-label panel-toggle" onclick="togglePanel('panel-ops')">
+              Operadores avançados <i class="toggle-icon">▾</i>
+            </div>
+            <div class="panel-body">
+              <div class="chips" id="opChips">
+                <div class="chip active" data-val="intitle">intitle</div>
+                <div class="chip" data-val="inurl">inurl</div>
+                <div class="chip" data-val="intext">intext</div>
+                <div class="chip" data-val="filetype:pdf">filetype:pdf</div>
+                <div class="chip" data-val="cache">cache:</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /sidebar-scroll -->
+
+      <div class="sidebar-footer">
+        <button class="btn-gerar" onclick="buildQuery()">▶ GERAR</button>
+        <button class="btn-clear" onclick="clearAll()" title="Limpar tudo">✕</button>
+      </div>
+
+    </aside>
+
+    <!-- ── Content ────────────────────────────────────────── -->
+    <div class="content">
+
+      <!-- Query box -->
+      <div class="query-box" id="queryBox">
+        <div class="query-header">
+          <span class="query-title">Query gerada</span>
+          <div class="query-actions">
+            <button class="btn-icon" id="copyBtn" onclick="copyQuery()">⎘ Copiar</button>
+            <a id="searchLink" href="#" target="_blank" class="btn-icon primary">↗ Buscar</a>
+          </div>
+        </div>
+        <div class="query-body">
+          <div id="queryOutput"></div>
+        </div>
+      </div>
+
+      <!-- Templates -->
+      <div>
+        <div class="section-label">Templates prontos</div>
+        <button class="random-btn" onclick="applyRandomPreset()">
+          <span class="dice">🎲</span> TEMPLATE ALEATÓRIO — surpreenda-se
+        </button>
+        <div class="presets-grid" id="presetsGrid"></div>
+      </div>
+
+      <!-- Cheatsheet -->
+      <div class="query-box">
+        <div class="query-header">
+          <span class="query-title">Cheatsheet de operadores</span>
+        </div>
+        <div class="cheat-wrapper">
+          <table class="cheat-table">
+            <tr>
+              <td>site:linkedin.com</td>
+              <td>Restringe busca ao LinkedIn</td>
+            </tr>
+            <tr>
+              <td>intitle:"vaga"</td>
+              <td>Palavra no título da página</td>
+            </tr>
+            <tr>
+              <td>inurl:jobs</td>
+              <td>Palavra na URL</td>
+            </tr>
+            <tr>
+              <td>intext:"estratégia"</td>
+              <td>Palavra no corpo do texto</td>
+            </tr>
+            <tr>
+              <td>"gerente" OR "coordenador"</td>
+              <td>Um ou outro termo</td>
+            </tr>
+            <tr>
+              <td>"marketing digital" AND "gestão"</td>
+              <td>Ambos os termos</td>
+            </tr>
+            <tr>
+              <td>-estagio</td>
+              <td>Excluir término</td>
+            </tr>
+            <tr>
+              <td>filetype:pdf</td>
+              <td>Apenas arquivos PDF</td>
+            </tr>
+            <tr>
+              <td>after:2024-01-01</td>
+              <td>Publicado após data</td>
+            </tr>
+            <tr>
+              <td>"* de marketing"</td>
+              <td>Wildcard — qualquer palavra</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">✓ Copiado para a área de transferência</div>
+
+  <!-- Tutorial Modal -->
+  <div class="tutorial-overlay" id="tutorialOverlay" style="display:none">
+    <div class="tutorial-card">
+      <div class="tutorial-header">
+        <div class="tutorial-header-dots">
+          <span class="tutorial-dot-red"></span>
+          <span class="tutorial-dot-yellow"></span>
+          <span class="tutorial-dot-green"></span>
+        </div>
+        <span class="tutorial-title">jobhack — tutorial.md</span>
+      </div>
+      <div class="tutorial-body">
+        <div class="tutorial-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Digite o cargo ou área</div>
+            <div class="step-desc">No campo principal, escreva o que você busca. Ex: <code>analista de marketing</code>
+              ou clique em uma sugestão rápida abaixo do campo.</div>
+          </div>
+        </div>
+        <div class="tutorial-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Adicione palavras-chave extras</div>
+            <div class="step-desc">Termos como <code>estratégia</code>, <code>gestão</code> ou <code>remoto</code>
+              refinam a busca. Pressione <code>↵ Enter</code> após cada palavra.</div>
+          </div>
+        </div>
+        <div class="tutorial-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Escolha filtros e operadores</div>
+            <div class="step-desc">Defina regime, nível e operadores avançados como <code>intitle:</code> ou
+              <code>intext:</code>. Opcionalmente restrinja a um portal de vagas.</div>
+          </div>
+        </div>
+        <div class="tutorial-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Gere e use a query</div>
+            <div class="step-desc">Clique em <code>▶ GERAR</code>, depois em <code>↗ Buscar</code> para abrir no
+              buscador, ou <code>⎘ Copiar</code> para usar em qualquer lugar.</div>
+          </div>
+        </div>
+        <div class="tutorial-step">
+          <div class="step-num">★</div>
+          <div class="step-content">
+            <div class="step-title">Use os templates prontos</div>
+            <div class="step-desc">Clique em qualquer card de template — ou no botão <code>🎲 Aleatório</code> — para
+              preencher tudo automaticamente e explorar exemplos reais.</div>
+          </div>
+        </div>
+      </div>
+      <div class="tutorial-footer">
+        <button class="tutorial-skip" onclick="closeTutorial()">FECHAR</button>
+        <button class="tutorial-start" onclick="closeTutorial()">Entendi, vamos lá →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/main.js"></script>
+</body>
+
+</html>
