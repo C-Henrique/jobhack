@@ -1,10 +1,10 @@
-# 🔍 JobHack — Busca Avançada de Vagas
+# JobHack — Busca Avançada de Vagas
 
 > Ferramenta web para gerar consultas de **Google Hacking** voltadas à busca de vagas de emprego. Monte queries avançadas com filtros, operadores e palavras-chave, e abra direto no buscador de sua preferência.
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 - **Campo de cargo livre** — digite qualquer função ou área de atuação
 - **Sugestões rápidas** — chips clicáveis para preenchimento rápido (Marketing, Dev, UX, Dados, etc.)
@@ -27,7 +27,7 @@
 
 ---
 
-## 🚀 Como usar
+## Como usar
 
 1. **Clone o repositório**
 
@@ -49,7 +49,7 @@ open index.html
 
 ---
 
-## 🗂️ Estrutura do projeto
+## Estrutura do projeto
 
 ```
 jobhack/
@@ -67,7 +67,7 @@ jobhack/
 
 ---
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 | Tecnologia | Uso |
 |---|---|
@@ -82,7 +82,7 @@ Sem frameworks, sem dependências, sem build. Arquivo único, abre em qualquer n
 
 ---
 
-## 🔎 Operadores suportados
+## Operadores suportados
 
 | Operador | Descrição |
 |---|---|
@@ -99,7 +99,7 @@ Sem frameworks, sem dependências, sem build. Arquivo único, abre em qualquer n
 
 ---
 
-## 📱 Responsividade
+## Responsividade
 
 - **Desktop:** layout em duas colunas (sidebar fixa + área de conteúdo)
 - **Mobile:** layout empilhado com sidebar rolável e botões fixos na parte inferior
@@ -107,18 +107,7 @@ Sem frameworks, sem dependências, sem build. Arquivo único, abre em qualquer n
 
 ---
 
-## 🎨 Design
-
-- Paleta inspirada no macOS — fundo branco gelo `#f5f5f7`, superfícies brancas, sombras sutis
-- Accent verde terminal `#1d6f42` para elementos interativos
-- Query box com fundo escuro `#1c1c1e` e syntax highlight verde/amarelo
-- Três pontinhos macOS no header (decorativos)
-- Animações CSS puras: respiração da borda, shimmer no botão copiar, glow no botão buscar
-
-
----
-
-## 📄 Licença
+## Licença
 
 Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
