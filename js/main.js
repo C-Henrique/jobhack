@@ -142,9 +142,12 @@ function buildQuery() {
   const regime = document.getElementById('regimeSelect').value;
   const nivel = document.getElementById('nivelSelect').value;
   const formacao = document.getElementById('formacaoSelect').value;
-
+  const location = document.getElementById('locationInput').value.trim();
+  
+  
   const parts = [];
-
+  
+  if (location) parts.push(`"${location}"`);
   if (cargo) parts.push(ops.includes('intitle') ? `intitle:"${cargo}"` : `"${cargo}"`);
 
   if (keywords.length) {
@@ -234,6 +237,7 @@ function applyRandomPreset() {
 function clearAll() {
   document.getElementById('cargoInput').value = '';
   document.getElementById('regimeSelect').value = '';
+  document.getElementById('locationInput').value = '';
   document.getElementById('nivelSelect').value = '';
   document.getElementById('formacaoSelect').value = '';
 

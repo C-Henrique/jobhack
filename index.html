@@ -54,7 +54,7 @@
         <div class="panel">
           <div class="section-label">Cargo / Área de Atuação</div>
           <div class="field">
-            <input id="cargoInput" placeholder="ex: analista de marketing, desenvolvedor, designer..." />
+            <input id="cargoInput" placeholder="Qual vaga você está buscando?" />
           </div>
 
           <!-- Sugestões Rápidas (collapsible) -->
@@ -92,6 +92,15 @@
           <p class="hint hint-mt6">↵ Enter ou + para adicionar</p>
         </div>
 
+        <!-- Localização -->
+        <div class="panel">
+          <div class="section-label">Localização</div>
+          <div class="field">
+            <input id="locationInput" placeholder="ex: São Paulo, Remoto, Rio de Janeiro..." />
+          </div>
+          <p class="hint hint-mt6">Deixe vazio para buscar em qualquer lugar</p>
+        </div>
+
         <!-- Mecanismo de busca -->
         <div class="panel">
           <div class="section-label">Mecanismo de Busca</div>
@@ -102,7 +111,7 @@
             <div class="chip" data-val="brave" data-url="https://search.brave.com/search?q=">Brave</div>
             <div class="chip" data-val="yahoo" data-url="https://search.yahoo.com/search?p=">Yahoo</div>
           </div>
-          <p class="hint hint-mt8">O botão "Buscar" abrirá no mecanismo selecionado</p>
+          <p class="hint hint-mt8">Escolha onde sua pesquisa vai abrir</p>
         </div>
 
         <!-- Sites de vagas (collapsible) -->
@@ -165,7 +174,7 @@
         <div class="panel">
           <div class="panel-collapsible" id="panel-ops">
             <div class="section-label panel-toggle" onclick="togglePanel('panel-ops')">
-              Operadores avançados <i class="toggle-icon">▾</i>
+              Filtros avançados <i class="toggle-icon">▾</i>
             </div>
             <div class="panel-body">
               <div class="chips" id="opChips">
@@ -194,7 +203,7 @@
       <!-- Query box -->
       <div class="query-box" id="queryBox">
         <div class="query-header">
-          <span class="query-title">Query gerada</span>
+          <span class="query-title">Sua pesquisa</span>
           <div class="query-actions">
             <button class="btn-icon" id="copyBtn" onclick="copyQuery()">⎘ Copiar</button>
             <a id="searchLink" href="#" target="_blank" class="btn-icon primary">↗ Buscar</a>
@@ -209,7 +218,7 @@
       <div>
         <div class="section-label">Templates prontos</div>
         <button class="random-btn" onclick="applyRandomPreset()">
-          <span class="dice">🎲</span> TEMPLATE ALEATÓRIO — surpreenda-se
+          <span class="dice">🎲</span> Exemplo aleatório — clique para ver
         </button>
         <div class="presets-grid" id="presetsGrid"></div>
       </div>
@@ -217,13 +226,13 @@
       <!-- Cheatsheet -->
       <div class="query-box">
         <div class="query-header">
-          <span class="query-title">Cheatsheet de operadores</span>
+          <span class="query-title">Como pesquisar melhor</span>
         </div>
         <div class="cheat-wrapper">
           <table class="cheat-table">
             <tr>
               <td>site:linkedin.com</td>
-              <td>Restringe busca ao LinkedIn</td>
+              <td>Busca só dentro do LinkedIn</td>
             </tr>
             <tr>
               <td>intitle:"vaga"</td>
@@ -235,7 +244,7 @@
             </tr>
             <tr>
               <td>intext:"estratégia"</td>
-              <td>Palavra no corpo do texto</td>
+              <td>A palavra aparece dentro da página</td>
             </tr>
             <tr>
               <td>"gerente" OR "coordenador"</td>
@@ -243,11 +252,11 @@
             </tr>
             <tr>
               <td>"marketing digital" AND "gestão"</td>
-              <td>Ambos os termos</td>
+              <td>Ambas as palavras devem aparecer</td>
             </tr>
             <tr>
               <td>-estagio</td>
-              <td>Excluir término</td>
+              <td>Remove resultados com essa palavra</td>
             </tr>
             <tr>
               <td>filetype:pdf</td>
@@ -255,11 +264,11 @@
             </tr>
             <tr>
               <td>after:2024-01-01</td>
-              <td>Publicado após data</td>
+              <td>Resultados publicados após essa data</td>
             </tr>
             <tr>
               <td>"* de marketing"</td>
-              <td>Wildcard — qualquer palavra</td>
+              <td>O * substitui qualquer palavra</td>
             </tr>
           </table>
         </div>
@@ -302,15 +311,13 @@
         <div class="tutorial-step">
           <div class="step-num">3</div>
           <div class="step-content">
-            <div class="step-title">Escolha filtros e operadores</div>
-            <div class="step-desc">Defina regime, nível e operadores avançados como <code>intitle:</code> ou
-              <code>intext:</code>. Opcionalmente restrinja a um portal de vagas.</div>
-          </div>
+            <div class="step-title">Ajuste filtros e operadores</div>
+            <div class="step-desc">Selecione regime de trabalho, nível, localização, operadores avançados e outras opções para refinar ainda mais sua busca por vagas.</div></div>
         </div>
         <div class="tutorial-step">
           <div class="step-num">4</div>
           <div class="step-content">
-            <div class="step-title">Gere e use a query</div>
+            <div class="step-title">Gere e use</div>
             <div class="step-desc">Clique em <code>▶ GERAR</code>, depois em <code>↗ Buscar</code> para abrir no
               buscador, ou <code>⎘ Copiar</code> para usar em qualquer lugar.</div>
           </div>
@@ -325,8 +332,7 @@
         </div>
       </div>
       <div class="tutorial-footer">
-        <button class="tutorial-skip" onclick="closeTutorial()">FECHAR</button>
-        <button class="tutorial-start" onclick="closeTutorial()">Entendi, vamos lá →</button>
+        <button class="tutorial-end" onclick="closeTutorial()">Entendi, vamos lá →</button>
       </div>
     </div>
   </div>
